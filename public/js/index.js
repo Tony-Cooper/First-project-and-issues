@@ -219,33 +219,25 @@ $(document).scroll(function() {
 var photo = document.querySelectorAll('.album img');
     
 var box = $('.lightbox');
-
+    
 var isActive = false;
+    
+if(!isActive) {
+    isActive = true;
 photo.forEach(function(item, index, array) {
     item.onclick = function() {
-        isActive = !isActive;
-
-        if(!isActive) {
-            $(this).innerHTML = 'aasdasd';
-          $(this).css({
-            'position': 'fixed',
-            'top': '1%',
-            'left': '35%',
-            'width': '30%',
-            'max-height': 'none',
-            'z-index': '4',
-          });
-            box.css({
-                'display': 'block'
-            });
-        } else {
-          $(this).removeAttr("style");
-             box.css({
-                'display': 'none'
-            });
-        }
-      }
-});     
+        box.css({"display": "block"});
+        var source = item.getAttribute("src");
+        var image = $('#view');
+        image.attr("src", source);
+        console.log('done');
+        };
+});
+};
+    
+box.onclick = function () {
+        box.removeAttr("style");
+};
     
 var like = document.querySelectorAll('.likes i');
     

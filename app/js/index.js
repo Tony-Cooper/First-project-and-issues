@@ -216,55 +216,28 @@ $(document).scroll(function() {
 }   
 });
     
-//    всё что выше работает
-
-//    Создаю массив с фотографиями
-    
 var photo = document.querySelectorAll('.album img');
-    
-//    Чисто ради сокращения дальнейшего кода помещаю нужный блок в переменную
     
 var box = $('.lightbox');
     
-//    При нажатии на любую из фотографий, включается отображение блока .lightbox(эта часть даже работает). Так же по задумке выбранная фотография должна вставляться в этот блок, тем самым показываясь на весь экран, но этого не происходит, хотя выбирается всё правильно. Даже с выводом обычного текста ничего не получается.
-
+var isActive = false;
+    
+if(!isActive) {
+    isActive = true;
 photo.forEach(function(item, index, array) {
     item.onclick = function() {
         box.css({"display": "block"});
-        console.log(item);
-        box.innerHTML = "why my image is not there?";
+        var source = item.getAttribute("src");
+        var image = $('#view');
+        image.attr("src", source);
         console.log('done');
         };
 });
-     
-//              Закрытие по нажатию на блок - не работает. Причём в этм случае почему-то даже не выводит "клик" в лог
-              
-    box.onclick = function() {
-        console.log('click');
-        box.style.display = 'none';
-    };
+};
     
-//    Всё что ниже работает
-    
-//    var isActive = false;
-//photo.forEach(function(item, index, array) {
-//    item.onclick = function() {
-//        isActive = !isActive; // Обратное значение
-//
-//        if(!isActive) {
-//          $(this).css({
-//            'position': 'fixed',
-//            'top': '10%',
-//            'left': '35%',
-//            'width': '30%',
-//            'max-height': 'none',
-//            'z-index': '10001',
-//          });
-//        } else {
-//          $(this).removeAttr("style");
-//        }
-//      }
-//});
+box.onclick = function () {
+        box.removeAttr("style");
+};
     
 var like = document.querySelectorAll('.likes i');
     
